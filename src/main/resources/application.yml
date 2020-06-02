@@ -1,0 +1,17 @@
+server:
+  port: 8080
+person:
+  name: zhangszan
+  age: 18
+  isBoss: false
+  birth: 2017/11/05
+  maps: {data1: v1,data2: s1,data3: dd}
+  objects:
+    - lisi
+    - zhangsan
+  dog:
+    name: 小狗
+    age: 1
+spring:
+  profiles:
+    active: dev

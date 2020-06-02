@@ -1,0 +1,9 @@
+server:
+  port: 8082
+spring:
+  messages:
+    basename: i18n/index
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd

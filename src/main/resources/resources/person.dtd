@@ -1,0 +1,3 @@
+<!ELEMENT persion (age, name)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
