@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 
 @Controller
@@ -21,38 +22,40 @@ public class EmployeeController {
     EmployeeDao employeeDao;
     @Autowired
     DepartmentDao departmentDao;
+
     @GetMapping("/ems")
-    public String list(Model model){
+    public String list(Model model, HttpServletRequest request) {
+        String contextPath = request.getContextPath();
         Collection<Employee> employees = employeeDao.getAll();
-        model.addAttribute("employees",employees);
+        model.addAttribute("employees", employees);
         return "emp/list";
     }
 
     @GetMapping("/emp")
-    public String toAdd(Model model){
+    public String toAdd(Model model) {
         Collection<Department> departments = departmentDao.getDepartments();
-        model.addAttribute("depts",departments);
+        model.addAttribute("depts", departments);
         return "emp/add";
     }
 
     @PostMapping("/emp")
-    public String addEmp(Employee employee){
+    public String addEmp(Employee employee) {
         //redirect
         employeeDao.save(employee);
         return "redirect:/ems";
     }
 
     @GetMapping("/emp/{id}")
-    public String toEditPage(@PathVariable("id") Integer id,Model model){
+    public String toEditPage(@PathVariable("id") Integer id, Model model) {
         Employee employee = employeeDao.get(id);
-        model.addAttribute("emp",employee);
+        model.addAttribute("emp", employee);
         Collection<Department> departments = departmentDao.getDepartments();
-        model.addAttribute("depts",departments);
+        model.addAttribute("depts", departments);
         return "emp/add";
     }
 
     @PutMapping("/emp")
-    public String updateEmploy(Employee employee){
+    public String updateEmploy(Employee employee) {
         employeeDao.save(employee);
         return "redirect:/ems";
     }
